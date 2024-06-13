@@ -1,0 +1,41 @@
+body{
+  background-image: url('../../../assets/homebg.jpg');
+  background-size: cover; /* Ajusta la imagen para que cubra todo el fondo */
+  background-position: center; /* Centra la imagen en el fondo */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh; /* Establece la altura del contenedor al 100% del viewport */
+  width: 100vw; /* Establece el ancho del contenedor al 100% del viewport */
+}
+  
+  .home {
+    margin-bottom: 30px; /* Espacio entre el texto de bienvenida y los botones */
+  }
+  
+  
+  h2 {
+    font-size: 3em; /* Tamaño grande de fuente */
+    color: rgb(0, 0, 0);
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column; /* Coloca los botones en columna */
+    align-items: stretch; /* Asegura que los botones se estiren para llenar el ancho */
+    width: 100%; /* Establece el ancho del contenedor de botones */
+    max-width: 300px; /* Establece un ancho máximo para el contenedor */
+  }
+  
+  .btn {
+    font-size: 1.5em; /* Tamaño grande de fuente para los botones */
+    padding: 10px 20px; /* Ajusta el padding para hacer los botones más grandes */
+    margin: 10px 0; /* Espaciado entre los botones */
+    width: 100%; /* Establece el ancho de los botones para que llenen el contenedor */
+  }
+  
