@@ -11,6 +11,9 @@
             <input id="pass" class="field_class" name="password_txt" type="password" formControlName="password" placeholder="Ingrese su contraseña">
             <button class="submit_class" type="submit" form="login_form">Entrar</button>
         </div>
+        <div *ngIf="errorMessage" class="error-message">
+            <p>{{ errorMessage }}</p>
+        </div>
         <div *ngIf="cargando" class="spinner-container">
             <mat-progress-spinner mode="indeterminate" diameter="30" color="primary"></mat-progress-spinner>
         </div>
