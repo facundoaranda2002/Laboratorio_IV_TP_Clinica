@@ -1,0 +1,45 @@
+/* Estilos para la lista y los elementos li */
+h1{
+    font-size: 30px;
+}
+
+button{
+    font-size: 25px;
+}
+
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 15px; /* Aumentar el margen inferior si es necesario */
+    font-size: 18px;
+}
+
+/* Estilos para los elementos dentro de cada li */
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    margin-bottom: 10px; /* Reducir el margen inferior */
+    margin-right: 10px; /* Ajustar el margen derecho */
+}
+
+label {
+    display: inline-block;
+    width: 80px;
+    margin-right: 10px; /* Ajustar el margen derecho */
+}
+
+span {
+
+    margin-right: 10px; /* Ajustar el margen derecho */
+}
+
+input[type="time"],
+input[type="number"] {
+     width: 90px;
+    margin-right: 10px; /* Ajustar el margen derecho */
+}

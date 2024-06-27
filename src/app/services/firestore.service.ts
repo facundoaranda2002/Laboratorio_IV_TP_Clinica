@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import {
-  addDoc, collection, doc, getDocs, updateDoc, Firestore
+  addDoc, collection, doc, getDocs, updateDoc, Firestore, onSnapshot, query
 } from '@angular/fire/firestore';
 
 @Injectable({
@@ -44,5 +44,22 @@ export class FirestoreService {
     });
     return array;
     
+  }
+
+  escucharCambios (ruta:string, callback: (data: any[]) => void) {
+    let datos :any[]=[];
+    const q = query(collection(this.firestore, ruta));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      datos = [];
+      querySnapshot.forEach((doc:any) => {
+        let data = {
+          id : doc.id,
+          data : doc.data()
+        }
+        datos.push(data);
+      });
+      callback(datos);
+    });
+    return datos;
   }
 }

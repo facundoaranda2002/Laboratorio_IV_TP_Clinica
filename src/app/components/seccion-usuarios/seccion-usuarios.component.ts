@@ -5,7 +5,7 @@ import { FormularioPacientesComponent } from '../formulario-pacientes/formulario
 import { RegistroAdministradoresComponent } from '../registro-administradores/registro-administradores.component';
 import { MatIcon } from '@angular/material/icon';
 
-import { Component, EventEmitter, Inject, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Inject, Output, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -16,6 +16,9 @@ import { MatCard, MatCardModule, MatCardTitle } from '@angular/material/card';
 import { MatProgressSpinner, MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgIf } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import * as XLSX from 'xlsx';
+import { HistoriaClinicaComponent } from '../historia-clinica/historia-clinica.component';
+import { HistoriaClinicaConsultaComponent } from '../historia-clinica-consulta/historia-clinica-consulta.component';
 
 
 @Component({
@@ -29,7 +32,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     NgIf,
     MatIcon,
     MatTableModule,
-    MatCheckboxModule],
+    MatCheckboxModule, HistoriaClinicaConsultaComponent],
   templateUrl: './seccion-usuarios.component.html',
   styleUrl: './seccion-usuarios.component.css'
 })
@@ -42,14 +45,17 @@ export class SeccionUsuariosComponent {
   listaPacientes : MatTableDataSource<any> = new MatTableDataSource<any>();
   listaAdministradores : MatTableDataSource<any> = new MatTableDataSource<any>();
   
-  @ViewChild(MatTable) table!: MatTable<any>;
-
   isChecked : boolean = false;
   cargando : boolean = false;
+  obtenerLink : boolean = false;
 
   @ViewChild('paginator', {static: true}) paginator!: MatPaginator;
   @ViewChild('paginator2', {static: true}) paginator2!: MatPaginator;
   @ViewChild('paginator3', {static: true}) paginator3!: MatPaginator;
+
+  @ViewChild('tablaUno') tablaUno!: ElementRef;
+  @ViewChild('tablaDos') tablaDos!: ElementRef;
+  @ViewChild('tablaTres') tablaTres!: ElementRef;
 
   async ngOnInit(){
     this.lista.paginator = this.paginator;
@@ -61,6 +67,36 @@ export class SeccionUsuariosComponent {
   constructor(private formBuilder:FormBuilder,private firestore:FirestoreService,
     private dialog: MatDialog){
   }
+
+  exportToExcel(): void {
+    
+  // Crear un libro de Excel
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+
+  // Hoja de Pacientes
+  const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.tablaUno.nativeElement);
+  XLSX.utils.book_append_sheet(wb, ws, 'Pacientes');
+
+  // Hoja de Especialistas
+  const ws2: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.tablaDos.nativeElement);
+  XLSX.utils.book_append_sheet(wb, ws2, 'Especialistas');
+
+  // Hoja de Administradores
+  const ws3: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.tablaTres.nativeElement);
+  XLSX.utils.book_append_sheet(wb, ws3, 'Administradores');
+
+  // Guardar en el archivo
+  XLSX.writeFile(wb, 'ListadoUsuarios.xlsx');
+
+  }
+
+  exportarTodo(): void {
+    this.obtenerLink = true;
+    this.exportToExcel()
+    this.obtenerLink = false;
+  }
+
+
 
   async actualizar(){
     this.cargando = true;
@@ -128,5 +164,6 @@ export class SeccionUsuariosComponent {
       this.actualizar();
     });
   }
+
 
 }

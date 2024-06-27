@@ -12,6 +12,7 @@ header {
 }
 h1 {
     height: 15vh;
+    margin-bottom: 0;
     font-family: 'system-ui';
     text-transform: uppercase;
     text-align: center;

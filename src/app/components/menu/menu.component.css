@@ -1,35 +1,50 @@
+/* En tu archivo de estilos global o local */
 body {
-    background-color: #fbfbfb;
-    font-size: 30px;
-  }
-  
-  @media (min-width: 991.98px) {
-    main {
-      padding-top: 20px; /* Height of navbar */
-    }
-  }
-  
-  /* Navbar */
-  .navbar {
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-  }
-  
-  .nav-link.btn {
-    background: none;
-    border: none;
-    padding: 0;
-  }
-  
-  .nav-link.btn:focus {
-    outline: none;
-    box-shadow: none;
-  }
-  
-  .nav-item .nav-link {
-    display: flex;
-    align-items: center;
-  }
-  
+  background-color: #55b9e7;
+  font-size: 16px; /* Ajusta el tamaño de fuente según sea necesario */
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 
-  
-  
+main {
+  flex: 1;
+  padding-top: 20px; /* Ajusta según el espacio deseado debajo de la barra de navegación */
+}
+
+.navbar {
+  background-color: white;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.nav-link.btn {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.nav-link.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.nav-item .nav-link {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.navbar-nav .nav-item {
+  margin-right: 20px;
+}
+
+.navbar-nav .nav-item:last-child {
+  margin-right: 0;
+}
+
+.img {
+  max-width: 100%;
+  border-radius: 50%;
+  border: 2px solid black;
+}

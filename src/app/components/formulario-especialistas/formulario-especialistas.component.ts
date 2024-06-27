@@ -11,11 +11,13 @@ import { StorageService } from '../../services/storage.service';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { EspecialidadesComponent } from '../especialidades/especialidades.component';
 import Swal from 'sweetalert2';
+//import { ReCaptchaService } from '../../services/re-captcha.service';
+import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings, RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-formulario-especialistas',
   standalone: true,
-  imports: [NgIf, ReactiveFormsModule, MatIconModule],
+  imports: [NgIf, ReactiveFormsModule, MatIconModule,  RecaptchaModule, MatProgressSpinnerModule],
   templateUrl: './formulario-especialistas.component.html',
   styleUrl: './formulario-especialistas.component.css'
 })
@@ -25,6 +27,8 @@ export class FormularioEspecialistasComponent {
   yaCargoEspecialidad:boolean = false;
   especialidadesSeleccionadas : any[]=[];
   @Input() mostrarVolver : boolean = false;
+  //captchaVerificado:boolean = false;
+  //clickCaptcha : boolean = false;
 
   fb = inject(FormBuilder);
   authService = inject(FirebaseAuthService);
@@ -33,6 +37,7 @@ export class FormularioEspecialistasComponent {
   firestore = inject(FirestoreService);
   storage = inject(StorageService);
   dialog = inject(MatDialog);
+  //reCaptcha = inject(ReCaptchaService);
  
 
   constructor(@Optional() public dialogRef: MatDialogRef<FormularioEspecialistasComponent>){}
@@ -56,7 +61,16 @@ export class FormularioEspecialistasComponent {
 
   async enviar(){
 
-    if(this.form.valid && (this.imagenes ? this.imagenes.length : 0 ) === 1 && this.especialidadesSeleccionadas.length >= 1){
+    let formValido = this.form.valid && (this.imagenes ? this.imagenes.length : 0 ) === 1 && this.especialidadesSeleccionadas.length >= 1;
+    //if(formValido && this.captchaVerificado){
+    if(formValido){
+      Swal.fire({
+        title: 'Cargando...',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      });
       let credenciales = await this.authService.register({email:this.form.value.mail,password:this.form.value.clave})
       let fotos : string[] = [];
 
@@ -73,8 +87,17 @@ export class FormularioEspecialistasComponent {
         credenciales: JSON.stringify(credenciales),
         fotos: fotos
       }
-      this.firestore.guardar(usuario,"usuarios")
-    }else{
+      await this.firestore.guardar(usuario,"usuarios")
+      this.form.reset()
+      Swal.close()
+      this.router.navigate(["login"])
+    }
+    /*
+    else if(!this.captchaVerificado && formValido){
+      Swal.fire("ERROR","Verifique el captcha antes de enviar","error");
+    }
+    */
+    else{
       Swal.fire("ERROR","Verifique los campos ingresados","error");
     }
 
@@ -96,7 +119,30 @@ export class FormularioEspecialistasComponent {
     dialogRef.afterClosed().subscribe((result:any) => {
       this.especialidadesSeleccionadas = result;
       console.log(this.especialidadesSeleccionadas)
+      let html = '<ul>';
+      this.especialidadesSeleccionadas.forEach(especialidad => {
+        html += `<li>${especialidad.nombre}</li>`
+      });
+      html += "</ul>"
+      Swal.fire({
+        title:"Especialidades elegidas",
+        html:html,
+        icon:"info"})
       this.yaCargoEspecialidad = true;
     });
   }
+
+  /*
+  async onCaptchaResolved(response: string | null) {
+    this.clickCaptcha = true;
+    await this.reCaptcha.verificar(response)
+      .then((respuesta)=>{
+        this.captchaVerificado = respuesta
+      })
+      .catch((error)=>{
+        this.captchaVerificado = error
+      });
+    this.clickCaptcha = false;
+  }
+  */
 }

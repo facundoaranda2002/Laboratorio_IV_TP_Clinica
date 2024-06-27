@@ -5,5 +5,8 @@ html, body {
     height: 100%;
     width: 100%;
     /*overflow: hidden; Oculta la barra de desplazamiento */
+    background-color: #1d3742 !important;
+    font-family: 'system-ui' !important;  
+      
 }
 

@@ -1,5 +1,7 @@
 
 .head{
+  display: flex;
+  align-items: center; /* Opcional: para alinear verticalmente los elementos */
   padding: 0px;
   margin: 0px;
 }
@@ -9,7 +11,7 @@
   text-transform: uppercase;
   text-align: center;
   padding: 0px;
-  margin: 0px;
+  margin: 0 0 0 170px;
 }
 .form_class {
   width: 800px;

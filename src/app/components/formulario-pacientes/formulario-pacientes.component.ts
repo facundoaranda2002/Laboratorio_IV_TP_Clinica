@@ -9,12 +9,14 @@ import {MatIconModule} from '@angular/material/icon';
 import { FirestoreService } from '../../services/firestore.service';
 import { StorageService } from '../../services/storage.service';
 import { MatDialogRef } from '@angular/material/dialog';
+//import { ReCaptchaService } from '../../services/re-captcha.service';
+import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings, RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-formulario-pacientes',
   standalone: true,
-  imports: [NgIf, ReactiveFormsModule, MatIconModule],
+  imports: [NgIf, ReactiveFormsModule, MatIconModule, RecaptchaModule, MatProgressSpinnerModule],
   templateUrl: './formulario-pacientes.component.html',
   styleUrl: './formulario-pacientes.component.css'
 })
@@ -22,6 +24,8 @@ export class FormularioPacientesComponent {
   imagenes : any;
   yaCargo : boolean = false;
   @Input() mostrarVolver : boolean = false;
+  //captchaVerificado:boolean = false;
+  //clickCaptcha : boolean = false;
 
   fb = inject(FormBuilder);
   authService = inject(FirebaseAuthService);
@@ -29,6 +33,7 @@ export class FormularioPacientesComponent {
   elementRef = inject(ElementRef);
   firestore = inject(FirestoreService);
   storage = inject(StorageService);
+  //reCaptcha = inject(ReCaptchaService);
  
 
   constructor(@Optional() public dialogRef: MatDialogRef<FormularioPacientesComponent>){}
@@ -50,8 +55,16 @@ export class FormularioPacientesComponent {
   }
 
   async enviar(){
-    
-    if(this.form.valid && (this.imagenes ? this.imagenes.length : 0 ) === 2){
+    let formValido = this.form.valid && (this.imagenes ? this.imagenes.length : 0 ) === 2;
+    //if(formValido && this.captchaVerificado){
+    if(formValido){
+      Swal.fire({
+        title: 'Cargando...',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      });
       let credenciales = await this.authService.register({email:this.form.value.mail,password:this.form.value.clave})
       let fotos : string[] = [];
 
@@ -65,8 +78,17 @@ export class FormularioPacientesComponent {
         credenciales: JSON.stringify(credenciales),
         fotos: fotos
       }
-      this.firestore.guardar(usuario,"usuarios")
-    }else{
+      await this.firestore.guardar(usuario,"usuarios")
+      this.form.reset()
+      Swal.close()
+      this.router.navigate(["login"])
+    }
+    /*
+    else if(!this.captchaVerificado && formValido){
+      Swal.fire("ERROR","Verifique el captcha antes de enviar","error");
+    }
+    */
+    else{
       Swal.fire("ERROR","Verifique los campos ingresados","error");
     }
 
@@ -78,4 +100,18 @@ export class FormularioPacientesComponent {
   volver(){
     this.router.navigate(["bienvenida"])
   }
+
+  /*
+  async onCaptchaResolved(response: string | null) {
+    this.clickCaptcha = true;
+    await this.reCaptcha.verificar(response)
+      .then((respuesta)=>{
+        this.captchaVerificado = respuesta
+      })
+      .catch((error)=>{
+        this.captchaVerificado = error
+      });
+    this.clickCaptcha = false;
+  }
+  */
 }

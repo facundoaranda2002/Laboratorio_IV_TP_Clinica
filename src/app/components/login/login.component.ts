@@ -58,20 +58,28 @@ export class LoginComponent {
   }
 
   volver(){
-    this.router.navigateByUrl('/menu');
+    this.router.navigate(["bienvenida"]);
   }
 
   userA()
   {
-    this.form.setValue({email : "tepeyi1316@fna6.com", password:"tepeyi123"}); 
+    this.form.setValue({email : "kideni5106@joeroc.com", password:"kideni123"}); 
   }
   userB()
   {
-    this.form.setValue({email : "tajigop613@fna6.com", password:"tajigop123"}); 
+    this.form.setValue({email : "gejagir604@joeroc.com", password:"gejagir123"}); 
   }
   userC()
   {
-    this.form.setValue({email : "facundoaranda67@gmail.com", password:"facu123"});
+    this.form.setValue({email : "cidox32195@dcbin.com", password:"cidox123"});
+  }
+  userD()
+  {
+    this.form.setValue({email : "facundoaranda67@gmail.com", password:"facu123"}); 
+  }
+  userE()
+  {
+    this.form.setValue({email : "lexano9081@dcbin.com", password:"lexano123"});
   }
 
 

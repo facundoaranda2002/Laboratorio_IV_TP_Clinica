@@ -52,8 +52,17 @@ export class FirebaseAuthService {
       .catch((error)=>{ 
         Swal.fire("ERROR","Usuario no autorizado","error");
       })
-
   }
+
+  async getUsuarioLogueado(){
+    let usuario = null;
+    const ls = localStorage.getItem("usuario");
+    if(ls)
+      usuario = JSON.parse(ls);
+
+    return await this.obtetenerUsuarioLogueadoBase(usuario.user.uid);
+  }
+
 
   logout(){
       localStorage.clear();
