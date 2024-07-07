@@ -26,7 +26,7 @@
         </div>
     </div>
     <form [formGroup]="form" *ngIf="indice === 0">
-        <!--
+    
         <div class="row">
             <div class="col-lg-12 col-md-12 mt-3 ml-3 mb-3">
                 <div class="form-box subject-icon">
@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        -->
+        
         <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="listaEspecialidades">
 
@@ -58,7 +58,7 @@
         </div>
     </form>
     <form [formGroup]="formPaciente"  *ngIf="esEspecialista && indice === 1">
-        <!--
+        
         <div class="row">
             <div class="col-lg-12 col-md-12 mt-3 ml-3 mb-3">
                 <div class="form-box subject-icon">
@@ -66,7 +66,7 @@
                 </div>
             </div>
         </div>
-        -->
+        
         <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="listaPacientes">
 
@@ -95,7 +95,7 @@
         </div>
     </form>
     <form [formGroup]="formEspecialista" *ngIf="!esEspecialista && indice === 2">
-        <!--
+        
         <div class="row">
             <div class="col-lg-12 col-md-12 mt-3 ml-3 mb-3">
                 <div class="form-box subject-icon">
@@ -103,7 +103,7 @@
                 </div>
             </div>
         </div>
-        -->
+        
         <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="listaEspecialistas">
 
@@ -132,7 +132,7 @@
         </div>
     </form>
     <form [formGroup]="formFecha" *ngIf="indice === 3">
-        <!--
+        
         <div class="row">
             <div class="col-lg-12 col-md-12 mt-3 ml-3 mb-3">
                 <div class="form-box subject-icon">
@@ -140,7 +140,7 @@
                 </div>
             </div>
         </div>
-        -->
+        
         <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="listaFechas">
 
@@ -164,7 +164,7 @@
         </div>
     </form>
     <form [formGroup]="formHorario" *ngIf="indice === 4">
-        <!--
+        
         <div class="row">
             <div class="col-lg-12 col-md-12 mt-3 ml-3 mb-3">
                 <div class="form-box subject-icon">
@@ -172,7 +172,7 @@
                 </div>
             </div>
         </div>
-        -->
+        
         <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="listaHorarios">
 
@@ -196,7 +196,7 @@
         </div>
     </form>
     <form [formGroup]="formEstado" *ngIf="indice === 5">
-        <!--
+        
         <div class="row">
             <div class="col-lg-12 col-md-12 mt-3 ml-3 mb-3">
                 <div class="form-box subject-icon">
@@ -204,7 +204,7 @@
                 </div>
             </div>
         </div>
-        -->
+        
         <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="listaEstados">
 

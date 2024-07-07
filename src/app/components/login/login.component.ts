@@ -6,6 +6,7 @@ import { FirebaseAuthService } from '../../services/firebase-auth.service';
 import { NgIf } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatIconModule} from '@angular/material/icon';
+import { FirestoreService } from '../../services/firestore.service';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent {
   authService = inject(FirebaseAuthService);
   router = inject(Router);
   elementRef = inject(ElementRef);
+  firestore = inject(FirestoreService);
 
   errorMessage: string = "";
 
@@ -42,6 +44,7 @@ export class LoginComponent {
       }
     }
   }
+
   
 
   async ingresar(){

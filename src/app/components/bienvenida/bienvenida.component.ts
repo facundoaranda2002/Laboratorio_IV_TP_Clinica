@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { RegistroComponent } from '../registro/registro.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-bienvenida',
@@ -18,5 +20,21 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   ]
 })
 export class BienvenidaComponent {
+
+  constructor(public dialog: MatDialog){
+
+  }
+
+  registro(){
+
+    const dialogRef = this.dialog.open(RegistroComponent, {
+      data: {},
+      width: 'auto',
+    });
+
+    dialogRef.afterClosed().subscribe((result:any) => {
+
+    });
+  }
 
 }

@@ -127,7 +127,7 @@ export class HistoriaClinicaConsultaComponent implements AfterContentInit{
   exportarExcel(){
     
     if(this.pacienteSeleccionado !== null){
-      let nombreArchivo = this.pacienteSeleccionado.datos.apellido.toString() + this.pacienteSeleccionado.id.toString()
+      let nombreArchivo = this.pacienteSeleccionado.datos.apellido.toString()
 
       // Crear un libro de Excel
       const wb: XLSX.WorkBook = XLSX.utils.book_new();

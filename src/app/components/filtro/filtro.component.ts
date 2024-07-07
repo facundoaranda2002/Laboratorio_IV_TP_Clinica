@@ -209,12 +209,14 @@ export class FiltroComponent {
     });
   }
 
-  filtrarFecha(){
+  filtrarFecha() {
+    const filtro = this.formFecha.value.fecha ? this.formFecha.value.fecha : "";
+    
     this.listaFechas.data = this.fechas.filter((element: any) => {
-      const opcionesDeFormato = { month: 'short', day: 'numeric', year: 'numeric' };
-      const fecha = element.toLocaleDateString('en-US', opcionesDeFormato).toLowerCase();
-      const filtro = this.formFecha.value.fecha?.toLowerCase() ? this.formFecha.value.fecha?.toLowerCase() : "";
-      return fecha.includes(filtro); 
+      const fecha = new Date(element);
+      const fechaFormateada = fecha.toISOString().split('T')[0]; // Convierte a "yyyy-mm-dd"
+  
+      return fechaFormateada.includes(filtro); 
     });
   }
 

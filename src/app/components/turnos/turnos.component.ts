@@ -16,11 +16,12 @@ import { DoctorPipe } from '../../pipes/doctor.pipe';
 import { EncuestaComponent } from '../encuesta/encuesta.component';
 import { HistoriaClinicaComponent } from '../historia-clinica/historia-clinica.component';
 import { FechaPipe } from '../../pipes/fecha.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-turnos',
   standalone: true,
-  imports: [MatCard, MatCardTitle, ReactiveFormsModule, MatProgressSpinnerModule, MatTableModule, CommonModule, MatIcon, MatPaginator, DoctorPipe, EncuestaComponent, HistoriaClinicaComponent, FechaPipe],
+  imports: [MatCard, MatCardTitle, ReactiveFormsModule, MatProgressSpinnerModule, MatTableModule, CommonModule, MatIcon, MatPaginator, DoctorPipe, EncuestaComponent, HistoriaClinicaComponent, FechaPipe, MatTooltipModule],
   templateUrl: './turnos.component.html',
   styleUrl: './turnos.component.css'
 })

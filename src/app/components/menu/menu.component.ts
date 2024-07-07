@@ -11,18 +11,19 @@ import { TurnosComponent } from '../turnos/turnos.component';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { HistoriaClinicaComponent } from '../historia-clinica/historia-clinica.component';
 import { HistoriaClinicaConsultaComponent } from '../historia-clinica-consulta/historia-clinica-consulta.component';
+import { GraficosComponent } from '../graficos/graficos.component';
 
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [NgIf, SeccionUsuariosComponent, MatIconModule, MiPerfilComponent, SolicitarTurnoComponent, TurnosComponent, HistoriaClinicaConsultaComponent],
+  imports: [NgIf, SeccionUsuariosComponent, MatIconModule, MiPerfilComponent, SolicitarTurnoComponent, TurnosComponent, HistoriaClinicaConsultaComponent, GraficosComponent],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
   animations: [
-    trigger('slideInLeft', [
+    trigger('slideInRight', [
       state('void', style({
-        transform: 'translateX(-100%)',
+        transform: 'translateX(100%)',
       })),
       state('*', style({
         transform: 'translateX(0)',
@@ -68,6 +69,10 @@ export class MenuComponent {
 
   verPacientes(){
     this.pestania = 4;
+  }
+
+  verGraficos(){
+    this.pestania = 5;
   }
 
   salir(){

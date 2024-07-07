@@ -13,6 +13,14 @@ export class VerificadoGuard implements CanActivate {
   private firestore = inject(FirestoreService);
   private auth = inject(FirebaseAuthService);
 
+  async guardarLog(){
+    let data = {
+      usuario : await this.auth.getUsuarioLogueado(),
+      dia : new Date().getTime()
+    }
+    this.firestore.guardar(data,"logs")
+  }
+
   async canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -43,6 +51,10 @@ export class VerificadoGuard implements CanActivate {
     if (!respuesta) {
       localStorage.clear();
       this.router.navigateByUrl('/refresh', { skipLocationChange: true }).then(() => this.router.navigate(["login"]));
+    }
+    else
+    {
+      await this.guardarLog();
     }
 
     return respuesta;
