@@ -7,11 +7,12 @@ import { MatCard } from '@angular/material/card';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { NgFor, NgIf } from '@angular/common';
 import { DoctorPipe } from '../../pipes/doctor.pipe';
+import { BordeSeleccionAzulDirective } from '../../directivas/borde-seleccion-azul.directive';
 
 @Component({
   selector: 'app-grilla-botones',
   standalone: true,
-  imports: [MatCard, MatProgressSpinner, NgIf, NgFor, DoctorPipe],
+  imports: [MatCard, MatProgressSpinner, NgIf, NgFor, DoctorPipe, BordeSeleccionAzulDirective],
   templateUrl: './grilla-botones.component.html',
   styleUrl: './grilla-botones.component.css'
 })

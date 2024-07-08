@@ -19,6 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import * as XLSX from 'xlsx';
 import { HistoriaClinicaComponent } from '../historia-clinica/historia-clinica.component';
 import { HistoriaClinicaConsultaComponent } from '../historia-clinica-consulta/historia-clinica-consulta.component';
+import { DniPipe } from '../../pipes/dni.pipe';
 
 
 @Component({
@@ -32,7 +33,7 @@ import { HistoriaClinicaConsultaComponent } from '../historia-clinica-consulta/h
     NgIf,
     MatIcon,
     MatTableModule,
-    MatCheckboxModule, HistoriaClinicaConsultaComponent],
+    MatCheckboxModule, HistoriaClinicaConsultaComponent, DniPipe],
   templateUrl: './seccion-usuarios.component.html',
   styleUrl: './seccion-usuarios.component.css'
 })

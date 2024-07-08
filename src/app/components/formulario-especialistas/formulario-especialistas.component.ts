@@ -12,12 +12,13 @@ import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { EspecialidadesComponent } from '../especialidades/especialidades.component';
 import Swal from 'sweetalert2';
 //import { ReCaptchaService } from '../../services/re-captcha.service';
-import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings, RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { FocusBorderDirective } from '../../directivas/focus-border.directive';
 
 @Component({
   selector: 'app-formulario-especialistas',
   standalone: true,
-  imports: [NgIf, ReactiveFormsModule, MatIconModule,  RecaptchaModule, MatProgressSpinnerModule],
+  imports: [NgIf, ReactiveFormsModule, MatIconModule,  RecaptchaModule, MatProgressSpinnerModule, FocusBorderDirective],
   templateUrl: './formulario-especialistas.component.html',
   styleUrl: './formulario-especialistas.component.css'
 })
@@ -38,6 +39,7 @@ export class FormularioEspecialistasComponent {
   storage = inject(StorageService);
   dialog = inject(MatDialog);
   //reCaptcha = inject(ReCaptchaService);
+  flag: boolean = false;
  
 
   constructor(@Optional() public dialogRef: MatDialogRef<FormularioEspecialistasComponent>){}
@@ -58,49 +60,52 @@ export class FormularioEspecialistasComponent {
     this.imagenes = input.files;
   }
 
+  executeRecaptcha(token: any) {
+    console.log(token);
+    this.flag = true;
+  }
 
   async enviar(){
 
     let formValido = this.form.valid && (this.imagenes ? this.imagenes.length : 0 ) === 1 && this.especialidadesSeleccionadas.length >= 1;
-    //if(formValido && this.captchaVerificado){
-    if(formValido){
-      Swal.fire({
-        title: 'Cargando...',
-        allowOutsideClick: false,
-        didOpen: () => {
-          Swal.showLoading();
+    if(this.flag){
+      if(formValido){
+        Swal.fire({
+          title: 'Cargando...',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          }
+        });
+        let credenciales = await this.authService.register({email:this.form.value.mail,password:this.form.value.clave})
+        let fotos : string[] = [];
+
+        for (let i = 0; i < this.imagenes.length; i++) {
+          fotos.push(await this.storage.guardarFoto(this.imagenes[i],"usuarios"))
         }
-      });
-      let credenciales = await this.authService.register({email:this.form.value.mail,password:this.form.value.clave})
-      let fotos : string[] = [];
 
-      for (let i = 0; i < this.imagenes.length; i++) {
-        fotos.push(await this.storage.guardarFoto(this.imagenes[i],"usuarios"))
+        this.form.get("especialidades")?.setValue(JSON.stringify(this.especialidadesSeleccionadas.map((element)=> element.nombre)))
+
+        let usuario = {
+          datos : this.form.value,
+          perfil: "Especialista",
+          cuentaAprobada: false,
+          credenciales: JSON.stringify(credenciales),
+          fotos: fotos
+        }
+        await this.firestore.guardar(usuario,"usuarios")
+        this.form.reset()
+        Swal.close()
+        this.router.navigate(["login"])
       }
-
-      this.form.get("especialidades")?.setValue(JSON.stringify(this.especialidadesSeleccionadas.map((element)=> element.nombre)))
-
-      let usuario = {
-        datos : this.form.value,
-        perfil: "Especialista",
-        cuentaAprobada: false,
-        credenciales: JSON.stringify(credenciales),
-        fotos: fotos
+      else{
+        Swal.fire("ERROR","Verifique los campos ingresados","error");
       }
-      await this.firestore.guardar(usuario,"usuarios")
-      this.form.reset()
-      Swal.close()
-      this.router.navigate(["login"])
     }
-    /*
-    else if(!this.captchaVerificado && formValido){
+    else{
       Swal.fire("ERROR","Verifique el captcha antes de enviar","error");
     }
-    */
-    else{
-      Swal.fire("ERROR","Verifique los campos ingresados","error");
-    }
-
+    
     if(this.dialogRef){
       this.dialogRef.close();
     }

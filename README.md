@@ -57,11 +57,13 @@ Mostrara sus 2 imagenes, sus datos y su obra social. Ademas cuenta con una secci
 
 ## Seccion usuarios
 
-Solo la puede ver el Admin, dentro de ella tiene los datos de todos los usuarios, ademas de que puede registrar desde ahi ya sea a un paciente, un especialista o incluso otro admin. Cuenta con la posibilidad de aceptar o rechazar el ingreso de los especialistas al sistema. Tambien tiene una seccion donde, seleccionando previamente al paciente, puede ver su historia clinica.
+Solo la puede ver el Admin, dentro de ella tiene los datos de todos los usuarios, ademas de que puede registrar desde ahi ya sea a un paciente, un especialista o incluso otro admin. Cuenta con la posibilidad de aceptar o rechazar el ingreso de los especialistas al sistema. Tambien tiene una seccion donde, seleccionando previamente al paciente, puede ver su historia clinica y descargar un excel con los datos de esta. Tambien puede descargar un excel general de los usuarios.
 
 <img src="src/assets/Usuarios1.PNG">
 
 <img src="src/assets/Usuarios2.PNG">
+
+<img src="src/assets/Usuarios3.PNG">
 
 ## Solicitar Turno
 Pueden realizarlo tanto el administrador como el paciente, en el caso del paciente este eligira primero al especialista y despues la especialidad con la cual quiere tratarse, en caso de que el especialista tenga horarios disponibles para esa especialidad el usuario podra sacar un turno. Por el lado del admin seria el mismo procedimiento salvo que ademas despues de elegir al especialista y su especialidad, tendra que elegir al paciente que se atenderá con el.
@@ -93,4 +95,12 @@ Ya sea en la seccion "Turnos" o "Mis Turnos", se contara con un filtro en el cua
 En esta sección el especialista podra seleccionar a alguno de los pacientes que atendio para ver su historia clinica
 
 <img src="src/assets/Pacientes.PNG">
+
+## Estadisticas
+
+En esta seccion el administrador podra ver distintos tipos de estadisticas representadas en graficos, permitiendosele descargar un pdf con su informacion.
+
+<img src="src/assets/graficos1.PNG">
+<img src="src/assets/graficos2.PNG">
+<img src="src/assets/graficos3.PNG">
 

@@ -69,7 +69,7 @@ export class PdfServiceService {
             // Columna adicional a la derecha con el logo de la clínica
             {
               width: 'auto',
-              image: 'data:image/png;base64,'+ await this.getDataUrl("https://firebasestorage.googleapis.com/v0/b/laboratorioivtpclinicaaranda.appspot.com/o/favicon.ico?alt=media&token=70d80a82-eda8-4e45-996f-a792ec285bc0"), // Reemplaza con la URL real del logo de la clínica
+              image: 'data:image/png;base64,'+ await this.getDataUrl("https://firebasestorage.googleapis.com/v0/b/laboratorioivtpclinicaaranda.appspot.com/o/logo.png?alt=media&token=cd1e83e7-61a1-479c-9f1f-be4162d2afae"), // Reemplaza con la URL real del logo de la clínica
               fit: [200, 200], // Ajusta el tamaño según sea necesario
               alignment: 'right'
             }

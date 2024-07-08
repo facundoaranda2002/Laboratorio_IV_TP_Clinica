@@ -7,17 +7,11 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings, RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 import { provideHttpClient } from '@angular/common/http';
-import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideFirebaseApp(() => initializeApp({"projectId":"laboratorioivtpclinicaaranda","appId":"1:145080067078:web:aab408fe736a0b51550f87","storageBucket":"laboratorioivtpclinicaaranda.appspot.com","apiKey":"AIzaSyB0sew5jtuowWVtr9NF8dQFv_u2BwkjVxA","authDomain":"laboratorioivtpclinicaaranda.firebaseapp.com","messagingSenderId":"145080067078"})), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideStorage(() => getStorage()), provideAnimationsAsync(), 
-    provideHttpClient(),
-    {
-      provide: RECAPTCHA_SETTINGS,
-      useValue: { siteKey: '6LeJ0wIpAAAAAPJTqzDVzVEqZhdaFSJn6eDaiIWi' } // Reemplaza con tu clave del sitio
-    },
-    { provide: RECAPTCHA_LANGUAGE, useValue: 'es' }, // Opcional: Cambia el idioma si es necesario
+    provideHttpClient()
   ]
 };

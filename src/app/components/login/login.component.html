@@ -9,7 +9,7 @@
             <input class="field_class" name="login_txt" type="text" formControlName="email" placeholder="Ingrese su mail" autofocus>
             <label>Password:</label>
             <input id="pass" class="field_class" name="password_txt" type="password" formControlName="password" placeholder="Ingrese su contraseña">
-            <button class="submit_class" type="submit" form="login_form">Entrar</button>
+            <button appFocusBorder class="submit_class" type="submit" form="login_form">Entrar</button>
         </div>
         <div *ngIf="errorMessage" class="error-message">
             <p>{{ errorMessage }}</p>
@@ -20,10 +20,10 @@
     </form>
     <h3>Usuarios pre registrados</h3>
     <div>
-        <button class="btn_default" (click)="userA()">Administrador</button>
-        <button class="btn_default" (click)="userB()">Especialista</button>
-        <button class="btn_default" (click)="userD()">Especialista 2</button>
-        <button class="btn_default" (click)="userC()">Paciente</button>
-        <button class="btn_default" (click)="userE()">Paciente 2</button>
+        <button appFocusBorder class="btn_default" (click)="userA()">Administrador</button>
+        <button appFocusBorder class="btn_default" (click)="userB()">Especialista</button>
+        <button appFocusBorder class="btn_default" (click)="userD()">Especialista 2</button>
+        <button appFocusBorder class="btn_default" (click)="userC()">Paciente</button>
+        <button appFocusBorder class="btn_default" (click)="userE()">Paciente 2</button>
     </div>
 </div>

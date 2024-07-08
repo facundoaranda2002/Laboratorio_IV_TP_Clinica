@@ -3,7 +3,7 @@
     <img [src]="usuario.data.fotos[1] " alt="Imagen de perfil 2" *ngIf="usuario.data.perfil === 'Paciente'" height="180px" width="auto">
     <h1>Nombre y Apellido: {{usuario.data.datos.nombre}} {{usuario.data.datos.apellido}}</h1>
     <p>Correo electrónico: {{usuario.data.datos.mail}}</p>
-    <p>DNI: {{usuario.data.datos.dni}}</p>
+    <p>DNI: {{usuario.data.datos.dni | dni}}</p>
     <p>Edad: {{usuario.data.datos.edad}}</p>
     <p *ngIf="usuario.data.perfil === 'Paciente'">Obra Social: {{usuario.data.datos.obraSocial}}</p>
 </div>

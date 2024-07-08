@@ -1,7 +1,7 @@
 <div>
   <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container-fluid">
-      <a class="navbar-brand" href="bienvenida" (click)="salir()">
+      <a appOpcionMenuSeleccion class="navbar-brand" href="bienvenida" (click)="salir()">
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
       </a>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -14,34 +14,34 @@
           </li>
           -->
           <li *ngIf="perfilActual === 'Administrador'" class="nav-item">
-            <button class="nav-link btn" (click)="verSeccionUsuario()">
+            <button appOpcionMenuSeleccion class="nav-link btn" (click)="verSeccionUsuario()">
               <span>Usuarios</span>
             </button>
           </li>
           <li class="nav-item">
-            <button class="nav-link btn" (click)="verMiPerfil()">
+            <button appOpcionMenuSeleccion class="nav-link btn" (click)="verMiPerfil()">
               <span>Mi perfil</span>
             </button>
           </li>
           <li *ngIf="perfilActual === 'Administrador' || perfilActual === 'Paciente'" class="nav-item">
-            <button class="nav-link btn" (click)="verSolicitarTurno()">
+            <button appOpcionMenuSeleccion class="nav-link btn" (click)="verSolicitarTurno()">
               <span>Solicitar turno</span>
             </button>
           </li>
           <li *ngIf="perfilActual === 'Especialista'" class="nav-item">
-            <button class="nav-link btn" (click)="verPacientes()">
+            <button appOpcionMenuSeleccion class="nav-link btn" (click)="verPacientes()">
               <span>Pacientes</span>
             </button>
           </li>
           <li *ngIf="perfilActual === 'Administrador' || perfilActual === 'Paciente' || 
                           perfilActual === 'Especialista'" class="nav-item">
-            <button class="nav-link btn" (click)="verTurnos()">
+            <button appOpcionMenuSeleccion class="nav-link btn" (click)="verTurnos()">
               <span *ngIf="perfilActual === 'Administrador'">Turnos</span>
               <span *ngIf="perfilActual !== 'Administrador'">Mis Turnos</span>
             </button>
           </li>
           <li *ngIf="perfilActual === 'Administrador'" class="nav-item">
-            <button class="nav-link btn" (click)="verGraficos()">
+            <button appOpcionMenuSeleccion class="nav-link btn" (click)="verGraficos()">
               <span>Estadisticas</span>
             </button>
           </li>          

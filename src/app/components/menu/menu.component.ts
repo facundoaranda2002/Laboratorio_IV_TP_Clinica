@@ -12,12 +12,13 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { HistoriaClinicaComponent } from '../historia-clinica/historia-clinica.component';
 import { HistoriaClinicaConsultaComponent } from '../historia-clinica-consulta/historia-clinica-consulta.component';
 import { GraficosComponent } from '../graficos/graficos.component';
+import { OpcionMenuSeleccionDirective } from '../../directivas/opcion-menu-seleccion.directive';
 
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [NgIf, SeccionUsuariosComponent, MatIconModule, MiPerfilComponent, SolicitarTurnoComponent, TurnosComponent, HistoriaClinicaConsultaComponent, GraficosComponent],
+  imports: [NgIf, SeccionUsuariosComponent, MatIconModule, MiPerfilComponent, SolicitarTurnoComponent, TurnosComponent, HistoriaClinicaConsultaComponent, GraficosComponent, OpcionMenuSeleccionDirective],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
   animations: [

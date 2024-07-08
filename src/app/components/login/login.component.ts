@@ -7,11 +7,12 @@ import { NgIf } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatIconModule} from '@angular/material/icon';
 import { FirestoreService } from '../../services/firestore.service';
+import { FocusBorderDirective } from '../../directivas/focus-border.directive';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, RouterLink, RouterOutlet, NgIf, MatProgressSpinnerModule, MatIconModule],
+  imports: [FormsModule, ReactiveFormsModule, RouterLink, RouterOutlet, NgIf, MatProgressSpinnerModule, MatIconModule, FocusBorderDirective],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

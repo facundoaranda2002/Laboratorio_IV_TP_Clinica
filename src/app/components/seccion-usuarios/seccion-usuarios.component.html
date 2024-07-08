@@ -1,8 +1,7 @@
-<!--
+
 <div class="d-flex justify-content-center mt-3 mb-3 p-3">
     <button class="btn btn-success"(click)="exportarTodo()">Exportar Excel</button>
 </div>
--->
 
 <mat-card class="p-3">
   
@@ -30,7 +29,7 @@
             </ng-container>
             <ng-container matColumnDef="dni">
                 <th mat-header-cell *matHeaderCellDef> DNI </th>
-                <td mat-cell *matCellDef="let element" style="font-size: 20px;"> {{element.data.datos.dni}} </td>
+                <td mat-cell *matCellDef="let element" style="font-size: 20px;"> {{element.data.datos.dni | dni}} </td>
             </ng-container>
             <ng-container matColumnDef="obraSocial">
                 <th mat-header-cell *matHeaderCellDef> Obra social </th>
@@ -92,7 +91,7 @@
             </ng-container>
             <ng-container matColumnDef="dni">
                 <th mat-header-cell *matHeaderCellDef> DNI </th>
-                <td mat-cell *matCellDef="let element" style="font-size: 20px;"> {{element.data.datos.dni}} </td>
+                <td mat-cell *matCellDef="let element" style="font-size: 20px;"> {{element.data.datos.dni | dni}} </td>
             </ng-container>
             <ng-container matColumnDef="especialidades">
                 <th mat-header-cell *matHeaderCellDef> Especialidades </th>
@@ -161,7 +160,7 @@
             </ng-container>
             <ng-container matColumnDef="dni">
                 <th mat-header-cell *matHeaderCellDef> DNI </th>
-                <td mat-cell *matCellDef="let element" style="font-size: 20px;"> {{element.data.datos.dni}} </td>
+                <td mat-cell *matCellDef="let element" style="font-size: 20px;"> {{element.data.datos.dni | dni}} </td>
             </ng-container>
             <ng-container matColumnDef="mail">
                 <th mat-header-cell *matHeaderCellDef> Mail </th>
